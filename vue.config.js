@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
     chainWebpack: config => {
         const ofs = ['vue-modules', 'vue', 'normal-modules', 'normal'];
@@ -11,6 +13,14 @@ module.exports = {
         };
         ofs.forEach(type => { addSassResourcesLoader(cssRules, type); addSassResourcesLoader(postRules, type) });
         return config;
+    },
+    css: {
+        loaderOptions: {
+            sass: {
+                sassOptions: {
+                    includePaths: [path.resolve(__dirname, "node_modules")]
+                }
+            }
+        }
     }
 }
-
